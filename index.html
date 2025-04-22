@@ -1,16 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Memory Master Multiplayer</title>
-  <link rel="stylesheet" href="style.css" />
-  <script type="module" src="script.js" defer></script>
-  <!-- Firebase SDKs -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Memory Game</title>
+  
+  <!-- Firebase SDK -->
   <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.0/firebase-app.js";
-    import { getDatabase, ref, set, onValue, get, child, update } from "https://www.gstatic.com/firebasejs/11.6.0/firebase-database.js";
-
+    import { getDatabase, ref, set } from "https://www.gstatic.com/firebasejs/11.6.0/firebase-database.js";
+    
     const firebaseConfig = {
       apiKey: "AIzaSyCGXGLPY8OJkaO3hE4YnCb5EWDSEm23dFs",
       authDomain: "memorygame-1325b.firebaseapp.com",
@@ -23,35 +22,39 @@
 
     // Initialize Firebase
     const app = initializeApp(firebaseConfig);
-    const db = getDatabase(app);
+    const database = getDatabase(app);
   </script>
+
+  <link rel="stylesheet" href="style.css"> <!-- Link to your stylesheet -->
 </head>
 <body>
   <div class="container">
-    <h1>Memory Master Multiplayer</h1>
-
-    <div id="login-screen">
-      <label for="name">Enter your name:</label>
-      <input type="text" id="name" />
-      <button id="join-button">Join Game</button>
+    <h1>Memory Game</h1>
+    
+    <div id="nameEntry">
+      <label for="nameInput">Enter your name:</label>
+      <input type="text" id="nameInput" placeholder="Enter your name">
+      <button id="joinButton">Join Game</button>
     </div>
 
-    <div id="waiting-room" class="hidden">
-      <p>Waiting for others to join and finish...</p>
-      <div id="players-list"></div>
-    </div>
+    <div id="gameArea" style="display: none;">
+      <h2>Welcome, <span id="playerName"></span>! Let's begin the game.</h2>
 
-    <div id="game-area" class="hidden">
-      <h2 id="game-question"></h2>
-      <div class="memory-content" id="memory-content"></div>
-      <div id="answer-section" class="hidden">
-        <label for="answer">Your answer:</label>
-        <input type="text" id="answer" />
-        <button id="submit-answer">Submit</button>
+      <!-- Game content starts here -->
+      <div id="memoryGame">
+        <div id="gameBoard">
+          <!-- Cards will be dynamically inserted here -->
+        </div>
+        <div id="status">
+          <p>Moves: <span id="moveCount">0</span></p>
+          <p>Time: <span id="timer">00:00</span></p>
+          <button id="restartButton">Restart Game</button>
+        </div>
       </div>
     </div>
 
-    <div id="tip-area" class="hidden"></div>
   </div>
+
+  <script src="script.js"></script> <!-- Link to your JavaScript file -->
 </body>
 </html>
