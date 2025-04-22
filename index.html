@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Memory Master Multiplayer</title>
+  <link rel="stylesheet" href="style.css" />
+  <script type="module" src="script.js" defer></script>
+  <!-- Firebase SDKs -->
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.0/firebase-app.js";
+    import { getDatabase, ref, set, onValue, get, child, update } from "https://www.gstatic.com/firebasejs/11.6.0/firebase-database.js";
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyCGXGLPY8OJkaO3hE4YnCb5EWDSEm23dFs",
+      authDomain: "memorygame-1325b.firebaseapp.com",
+      databaseURL: "https://memorygame-1325b-default-rtdb.europe-west1.firebasedatabase.app",
+      projectId: "memorygame-1325b",
+      storageBucket: "memorygame-1325b.firebasestorage.app",
+      messagingSenderId: "266277640820",
+      appId: "1:266277640820:web:d6a337f0978d8e63b48f21"
+    };
+
+    // Initialize Firebase
+    const app = initializeApp(firebaseConfig);
+    const db = getDatabase(app);
+  </script>
+</head>
+<body>
+  <div class="container">
+    <h1>Memory Master Multiplayer</h1>
+
+    <div id="login-screen">
+      <label for="name">Enter your name:</label>
+      <input type="text" id="name" />
+      <button id="join-button">Join Game</button>
+    </div>
+
+    <div id="waiting-room" class="hidden">
+      <p>Waiting for others to join and finish...</p>
+      <div id="players-list"></div>
+    </div>
+
+    <div id="game-area" class="hidden">
+      <h2 id="game-question"></h2>
+      <div class="memory-content" id="memory-content"></div>
+      <div id="answer-section" class="hidden">
+        <label for="answer">Your answer:</label>
+        <input type="text" id="answer" />
+        <button id="submit-answer">Submit</button>
+      </div>
+    </div>
+
+    <div id="tip-area" class="hidden"></div>
+  </div>
+</body>
+</html>
